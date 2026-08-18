@@ -1,0 +1,329 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   DESIGN SYSTEM  —  EDIT COLORS AND FONTS HERE
+   --------------------------------------------------------------------------
+   Everything visual on this site derives from the tokens in this one block.
+   Change a value here and it updates site-wide.
+
+   Colors are referenced in components as Tailwind classes, e.g.
+     --color-marine  ->  text-marine / bg-marine / border-marine
+     --color-signal  ->  text-signal / bg-signal
+
+   Fonts are wired to next/font in src/app/layout.tsx. To swap a typeface,
+   change the import in layout.tsx (the variable names stay the same).
+   ========================================================================== */
+@theme {
+  /* ---- Surfaces ---------------------------------------------------------- */
+  --color-paper: #fbfaf7; /* main page background (warm off-white)   */
+  --color-paper-alt: #f3f0ea; /* alternating section background          */
+  --color-paper-sunk: #ebe7de; /* image placeholder / inset fills         */
+
+  /* ---- Text -------------------------------------------------------------- */
+  --color-ink: #101317; /* headings, primary text                  */
+  --color-ink-soft: #4a5158; /* body copy                               */
+  --color-ink-mute: #868d95; /* captions, metadata, eyebrows            */
+
+  /* ---- Brand ------------------------------------------------------------- */
+  --color-marine: #0f4a6b; /* primary accent (deep sea blue)          */
+  --color-marine-deep: #06212f; /* dark section band (Sports)              */
+  --color-marine-mid: #0b3549; /* dark band gradient partner              */
+  --color-signal: #c6552f; /* secondary accent (regatta orange)       */
+  --color-signal-soft: #e08a63; /* accent on dark backgrounds              */
+
+  /* ---- Lines ------------------------------------------------------------- */
+  --color-hairline: rgba(16, 19, 23, 0.11);
+  --color-hairline-strong: rgba(16, 19, 23, 0.2);
+  --color-hairline-light: rgba(255, 255, 255, 0.14);
+
+  /* ---- Typography -------------------------------------------------------- */
+  --font-display: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", monospace;
+
+  /* ---- Motion ------------------------------------------------------------ */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+* {
+  border-color: var(--color-hairline);
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Offsets anchor jumps so the fixed header never covers a heading. */
+  scroll-padding-top: 5.5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--color-marine);
+  color: #fff;
+}
+
+/* Visible, on-brand focus ring for keyboard users only. */
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Respect users who ask the OS to reduce animation. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ==========================================================================
+   TYPOGRAPHY PRIMITIVES
+   ========================================================================== */
+
+/* Big editorial serif headline. Sizes fluidly between mobile and desktop. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.022em;
+}
+
+.display-xl {
+  font-size: clamp(2.6rem, 6.4vw, 5.5rem);
+}
+
+.display-lg {
+  font-size: clamp(2.1rem, 4.4vw, 3.5rem);
+}
+
+.display-md {
+  font-size: clamp(1.75rem, 3.2vw, 2.6rem);
+  line-height: 1.05;
+}
+
+/* Small uppercase mono label used above every section title. */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.lede {
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  line-height: 1.62;
+  color: var(--color-ink-soft);
+}
+
+/* ==========================================================================
+   LAYOUT PRIMITIVES
+   ========================================================================== */
+.shell {
+  width: 100%;
+  max-width: 84rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .shell {
+    padding-inline: 2.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .shell {
+    padding-inline: 4rem;
+  }
+}
+
+.section-pad {
+  padding-block: clamp(4.5rem, 9vw, 8.5rem);
+}
+
+/* Faint grid texture used behind the hero and the dark Sports band. */
+.grid-texture {
+  background-image: linear-gradient(
+      to right,
+      var(--color-hairline) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, var(--color-hairline) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+.grid-texture-light {
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.06) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+/* Fades a texture out toward the edges so it never looks like a hard tile. */
+.mask-fade {
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 40%, #000 30%, transparent 100%);
+}
+
+/* ==========================================================================
+   COMPONENT PRIMITIVES
+   ========================================================================== */
+
+/* --- Buttons -------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  white-space: nowrap;
+  transition: all 0.35s var(--ease-out-soft);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-marine);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -12px rgba(15, 74, 107, 0.55);
+}
+
+.btn-ghost {
+  border: 1px solid var(--color-hairline-strong);
+  color: var(--color-ink);
+}
+
+.btn-ghost:hover {
+  border-color: var(--color-ink);
+  background-color: rgba(16, 19, 23, 0.04);
+  transform: translateY(-2px);
+}
+
+.btn-on-dark {
+  border: 1px solid var(--color-hairline-light);
+  color: #fff;
+}
+
+.btn-on-dark:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+/* --- Cards ---------------------------------------------------------------- */
+.card {
+  position: relative;
+  background-color: #fff;
+  border: 1px solid var(--color-hairline);
+  border-radius: 1rem;
+  transition: border-color 0.4s var(--ease-out-soft),
+    box-shadow 0.4s var(--ease-out-soft), transform 0.4s var(--ease-out-soft);
+}
+
+.card-hover:hover {
+  border-color: var(--color-hairline-strong);
+  box-shadow: 0 24px 50px -30px rgba(16, 19, 23, 0.3);
+  transform: translateY(-4px);
+}
+
+.card-dark {
+  background-color: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--color-hairline-light);
+  border-radius: 1rem;
+  transition: all 0.4s var(--ease-out-soft);
+}
+
+.card-dark:hover {
+  background-color: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.28);
+  transform: translateY(-4px);
+}
+
+/* --- Tags / pills --------------------------------------------------------- */
+.tag {
+  display: inline-block;
+  padding: 0.3rem 0.65rem;
+  border-radius: 0.4rem;
+  background-color: var(--color-paper-alt);
+  border: 1px solid var(--color-hairline);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  color: var(--color-ink-soft);
+  white-space: nowrap;
+}
+
+.tag-dark {
+  display: inline-block;
+  padding: 0.3rem 0.65rem;
+  border-radius: 0.4rem;
+  background-color: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--color-hairline-light);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.78);
+  white-space: nowrap;
+}
+
+/* --- Animated underline for inline links ---------------------------------- */
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-out-soft);
+}
+
+.link-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* Reverse variant: starts underlined, retracts on hover. */
+.link-retract::after {
+  transform: scaleX(1);
+}
+
+.link-retract:hover::after {
+  transform: scaleX(0);
+  transform-origin: right;
+}
