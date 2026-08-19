@@ -60,18 +60,6 @@ export const IMAGES = {
     size: "1050 × 1400 px · 3:4",
   } satisfies ImageAsset,
 
-  // ===== REPLACE IMAGE HERE =====
-  // File:   /public/images/about-detail.jpg
-  // Ratio:  1:1 square (e.g. 800 x 800 px)
-  // Use:    A tight detail shot — solder joints, a lens mount, CAD on screen.
-  //         Adds texture next to the larger photo.
-  aboutDetail: {
-    src: "",
-    alt: "Close-up detail of hardware Alessandro has built",
-    hint: "Detail / texture shot",
-    size: "800 × 800 px · 1:1",
-  } satisfies ImageAsset,
-
   /* ======================================================================
      EXPERIENCE — organization logos
      Transparent PNG or SVG works best. Square canvas, logo centred with a

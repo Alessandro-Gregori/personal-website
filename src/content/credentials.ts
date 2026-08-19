@@ -54,10 +54,21 @@ export const SKILL_GROUPS: SkillGroup[] = [
    ========================================================================== */
 export type EducationItem = {
   school: string;
+  /** Primary degree. Rendered as the emphasised line under the school name. */
   degree: string;
+  /**
+   * Optional second degree, e.g. "Engineering Physics".
+   * Omit the field (or set it to "") to hide the row.
+   */
+  secondaryDegree?: string;
+  /**
+   * Optional minor, e.g. "Mathematics".
+   * Omit the field (or set it to "") to hide the row.
+   */
+  minor?: string;
   period: string;
   location: string;
-  /** Small facts rendered as a list, e.g. GPA. */
+  /** Small facts rendered as pills, e.g. GPA. */
   details: string[];
   logo: ImageAsset | null;
 };
@@ -66,6 +77,8 @@ export const EDUCATION: EducationItem[] = [
   {
     school: "Stanford University",
     degree: "B.S.E., Electrical Engineering",
+    secondaryDegree: "Engineering Physics",
+    minor: "Mathematics",
     period: "Expected 2029",
     location: "Stanford, CA",
     details: ["GPA 4.105"],

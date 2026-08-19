@@ -88,6 +88,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${instrumentSerif.variable} ${inter.variable} ${plexMono.variable}`}
     >
       <body>
+        {/*
+          Safety net: scroll reveals start hidden and are un-hidden by a class
+          from an IntersectionObserver. If JavaScript never runs at all, this
+          forces every revealed element visible so the page is still fully
+          readable rather than mostly blank. The hero doesn't need this — its
+          animations are pure CSS.
+        */}
+        <noscript>
+          <style>{`.reveal,.stagger-item{opacity:1!important;animation:none!important}`}</style>
+        </noscript>
+
         {/* Keyboard users can jump straight past the nav. */}
         <a
           href="#about"

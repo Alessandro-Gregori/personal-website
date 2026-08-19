@@ -1,24 +1,63 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
-import type { ReactNode } from "react";
+import { createElement, useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 
 /* ==========================================================================
-   REVEAL
+   SCROLL REVEALS
    --------------------------------------------------------------------------
-   Wraps anything in a subtle fade-and-rise as it scrolls into view.
-   Fires once, so nothing re-animates when you scroll back up.
+   Content fades and rises as it scrolls into view, fires once, and never
+   re-animates when you scroll back up.
 
-   Usage:
-     <Reveal>            ...  </Reveal>
-     <Reveal delay={0.1}> ...  </Reveal>
+   HOW IT WORKS — and why it's built this way:
+   An IntersectionObserver adds an "is-visible" class when the element enters
+   the viewport; the actual animation is a CSS keyframe (see globals.css).
+   The animation is NOT driven by JavaScript frame-by-frame, because a
+   JS-driven version can stall mid-flight and leave content permanently
+   stuck at opacity 0. With CSS, once the class lands the browser always
+   finishes the animation.
 
-   Motion is deliberately restrained — 0.7s, small travel, soft easing.
-   Users with "reduce motion" enabled get the content with no animation
-   (handled globally in globals.css).
+   As a second safety net, layout.tsx contains a <noscript> rule that forces
+   everything visible if JavaScript never runs at all.
+
+   Timings and distances live in globals.css. Usage is unchanged:
+     <Reveal>              ... </Reveal>
+     <Reveal delay={0.1}>  ... </Reveal>
+     <Reveal as="li">      ... </Reveal>
    ========================================================================== */
 
-const EASE = [0.22, 1, 0.36, 1] as const;
+/** Watches an element and reports the first time it scrolls into view. */
+function useInView<T extends HTMLElement>() {
+  const ref = useRef<T | null>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || inView) return;
+
+    /* Very old browsers, or SSR edge cases: just show the content. */
+    if (typeof IntersectionObserver === "undefined") {
+      setInView(true);
+      return;
+    }
+
+    /* If it's already on screen at mount, reveal it without waiting. */
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      /* Starts slightly before the element is fully on screen. */
+      { rootMargin: "0px 0px -70px 0px", threshold: 0 },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [inView]);
+
+  return { ref, inView };
+}
 
 type RevealProps = {
   children: ReactNode;
@@ -32,60 +71,47 @@ type RevealProps = {
 };
 
 export function Reveal({ children, delay = 0, y = 26, className = "", as = "div" }: RevealProps) {
-  const MotionTag = motion[as];
-  return (
-    <MotionTag
-      className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-70px" }}
-      transition={{ duration: 0.7, delay, ease: EASE }}
-    >
-      {children}
-    </MotionTag>
+  const { ref, inView } = useInView<HTMLElement>();
+
+  return createElement(
+    as,
+    {
+      ref,
+      className: `reveal${inView ? " is-visible" : ""} ${className}`.trim(),
+      style: {
+        "--reveal-delay": `${delay}s`,
+        "--reveal-y": `${y}px`,
+      } as CSSProperties,
+    },
+    children,
   );
 }
 
 /* --------------------------------------------------------------------------
-   STAGGER — parent/child pair for lists where each item should follow the
-   previous one. Wrap the list in <Stagger> and each item in <StaggerItem>.
+   STAGGER — for lists where each item should follow the previous one.
+   Wrap the list in <Stagger> and each item in <StaggerItem>. Delays come
+   from :nth-child rules in globals.css, so there's nothing to pass in.
+   Supports up to 8 items before delays stop increasing.
    -------------------------------------------------------------------------- */
 
-const parentVariants: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
-};
-
-const childVariants: Variants = {
-  hidden: { opacity: 0, y: 22 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } },
-};
-
 export function Stagger({ children, className = "" }: { children: ReactNode; className?: string }) {
+  const { ref, inView } = useInView<HTMLDivElement>();
+
   return (
-    <motion.div
-      className={className}
-      variants={parentVariants}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: "-70px" }}
-    >
+    <div ref={ref} className={`stagger${inView ? " is-visible" : ""} ${className}`.trim()}>
       {children}
-    </motion.div>
+    </div>
   );
 }
 
 export function StaggerItem({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return (
-    <motion.div className={className} variants={childVariants}>
-      {children}
-    </motion.div>
-  );
+  return <div className={`stagger-item ${className}`.trim()}>{children}</div>;
 }
 
 /* --------------------------------------------------------------------------
-   LINE REVEAL — used for the hero headline. Each line rises out from behind
-   a mask, which reads noticeably more crafted than a plain fade.
+   LINE REVEAL — each headline line rises out from behind a mask. Used in the
+   hero, which animates on load rather than on scroll, so this needs no
+   observer and no JavaScript: it's a CSS animation with a delay.
    -------------------------------------------------------------------------- */
 
 export function LineReveal({
@@ -99,14 +125,9 @@ export function LineReveal({
 }) {
   return (
     <span className="block overflow-hidden pb-[0.12em]">
-      <motion.span
-        className={`block ${className}`}
-        initial={{ y: "108%" }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.95, delay, ease: EASE }}
-      >
+      <span className={`a-line block ${className}`.trim()} style={{ animationDelay: `${delay}s` }}>
         {children}
-      </motion.span>
+      </span>
     </span>
   );
 }

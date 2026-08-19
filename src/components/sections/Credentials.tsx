@@ -18,6 +18,19 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
    Setting any of those arrays to [] hides its block automatically.
    ========================================================================== */
 
+/* Label/value row used for the secondary degree and minor. Matches the
+   mono-label pattern used elsewhere on the site. */
+function DegreeRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex gap-3">
+      <dt className="w-[4.75rem] shrink-0 pt-[0.2rem] font-mono text-[0.6rem] uppercase tracking-[0.14em] text-ink-mute">
+        {label}
+      </dt>
+      <dd className="font-sans text-[0.9rem] text-ink-soft">{value}</dd>
+    </div>
+  );
+}
+
 export function Credentials() {
   return (
     <section
@@ -95,7 +108,19 @@ export function Credentials() {
                         <p className="mt-1.5 font-sans text-[0.95rem] font-medium text-marine">
                           {item.degree}
                         </p>
-                        <p className="mt-2 font-mono text-[0.64rem] uppercase tracking-[0.12em] text-ink-mute">
+
+                        {/* Secondary degree and minor. Each row only renders
+                            if that field is filled in (credentials.ts). */}
+                        {(item.secondaryDegree || item.minor) && (
+                          <dl className="mt-3 space-y-1.5">
+                            {item.secondaryDegree && (
+                              <DegreeRow label="Secondary" value={item.secondaryDegree} />
+                            )}
+                            {item.minor && <DegreeRow label="Minor" value={item.minor} />}
+                          </dl>
+                        )}
+
+                        <p className="mt-3 font-mono text-[0.64rem] uppercase tracking-[0.12em] text-ink-mute">
                           {item.period} · {item.location}
                         </p>
                         {item.details.length > 0 && (

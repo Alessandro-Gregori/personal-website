@@ -436,6 +436,18 @@ an existing repository.
 
 ## 12. Troubleshooting
 
+**Don't run `npm run build` while `npm run dev` is running.** They both write to the same
+`.next` folder, so building mid-session pulls the running dev server's JavaScript and CSS
+out from under it. The symptoms are confusing: unstyled text, animations frozen halfway,
+elements that never fade in, 404s in the browser console. Stop the dev server first
+(`Ctrl+C`), then build.
+
+If it already happened, stop the dev server, delete the `.next` folder, and start again:
+
+```bash
+npm run dev
+```
+
 **The dev server won't start / weird module errors.** Delete `node_modules` and `.next`,
 then reinstall:
 

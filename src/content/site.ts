@@ -35,40 +35,40 @@ export const SITE = {
 
   /* ---- Hero -------------------------------------------------------------- */
   hero: {
-    /** Small mono label above your name. */
-    eyebrow: "Stanford University · B.S.E. Electrical Engineering",
+    /**
+     * Small mono label on the top meta row. Kept short so the stats below sit
+     * on the SAME line rather than wrapping underneath it. If you lengthen
+     * this, expect the stats to wrap to a second row on narrower screens.
+     */
+    eyebrow: "Stanford University",
     /**
      * Headline. Splits across lines exactly where you break the array.
      * Any word wrapped in {} renders in the serif italic accent style.
      */
-    headline: ["Engineering at the", "edge of {optics},", "hardware & medicine."],
+    headline: ["Using engineering", "to unify {optics}", "and medicine"],
     intro:
-      "I'm an electrical engineering student at Stanford, drawn to the places where light, electronics and the human body meet. I design optical test hardware for intraocular lenses at the Bascom Palmer Eye Institute, and solder avionics boards for a student-built satellite with the Stanford Space Initiative.",
-    /** Short stat strip beneath the intro. Keep to three or four items. */
+      "I am a sophomore studying electrical engineering at Stanford, with an interest in the places where light, electronics and the human body meet.",
+    /**
+     * Stats shown inline on the top meta row, to the right of the eyebrow.
+     * Keep values short — they render in the serif beside a small label.
+     * Two or three items fit comfortably before the row wraps.
+     */
     marquee: [
       { value: "4.105", label: "GPA" },
-      { value: "3×", label: "ILCA Youth Worlds" },
-      { value: "2029", label: "Expected B.S.E." },
+      { value: "2029", label: "Expected B.S.E. Electrical Engineering" },
     ],
   },
 
   /* ---- About ------------------------------------------------------------- */
   about: {
     eyebrow: "About",
-    heading: "A builder first, and a racer the rest of the time.",
+    heading: "An academic first, and a racer the rest of the time.",
     /** Each string becomes its own paragraph. */
     paragraphs: [
-      "I grew up in Miami and started sailing at eight years old, which turned out to be the best engineering education I could have asked for. Racing a single-handed dinghy is a continuous exercise in reading a system you don't fully control — wind, current, fleet, your own body — and adjusting faster than the boat next to you.",
+      "I grew up in Miami and started sailing at eight years old, which turned out to be the best engineering education I could have asked for. Racing a single-handed dinghy is a continuous exercise in reading a system you don't fully control, including wind, current, fleet, and your own body, then adjusting faster than the boat next to you.",
       "That instinct followed me into the lab. At the Bascom Palmer Eye Institute I work on optical instrumentation for intraocular lenses: designing fixtures in CAD, building a bench around a model eye, and characterising how extended-depth-of-focus and multifocal lenses behave when they aren't perfectly centred. Before that, I analysed OCT retinal scans for a clinical perfusion study that became a peer-reviewed publication.",
       "At Stanford I'm on the Avionics subteam of the Stanford Space Initiative, designing and soldering PCBs for a student-built satellite. Different domain, same appeal: hardware that has to work the first time, in an environment that won't forgive a sloppy assumption.",
       "The teaching thread matters to me too. I co-founded a nonprofit that taught Python and C++ fundamentals to underprivileged kids, and I've coached everything from sailing to strength training. Explaining something clearly is the fastest way to find out whether you actually understand it.",
-    ],
-    /** Small fact list rendered beside the paragraphs. */
-    facts: [
-      { label: "Based in", value: "Stanford, CA" },
-      { label: "Studying", value: "Electrical Engineering" },
-      { label: "Focus", value: "Optics · Biomedical · Embedded" },
-      { label: "Languages", value: "English, Italian (fluent)" },
     ],
   },
 

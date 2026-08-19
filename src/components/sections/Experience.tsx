@@ -20,12 +20,7 @@ export function Experience() {
       className="section-pad relative border-t border-hairline bg-paper-alt"
     >
       <div className="shell">
-        <SectionHeading
-          index="02"
-          eyebrow="Experience"
-          title="Where I've done the work."
-          lede="Optical instrumentation, clinical imaging and flight hardware — three different problem spaces that reward the same habits."
-        />
+        <SectionHeading index="02" eyebrow="Experience" title="Where I've done the work." />
 
         {/*
           The timeline geometry lives in two matched values:
