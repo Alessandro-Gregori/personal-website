@@ -38,7 +38,7 @@ export const IMAGES = {
   //         background. Natural light. Looking at or just past the camera.
   //         This is the single most important image on the site.
   portrait: {
-    src: "",
+    src: "/images/profile.jpg",
     alt: "Portrait of Alessandro Gregori",
     hint: "Primary portrait",
     size: "1200 × 1500 px · 4:5",
@@ -172,6 +172,16 @@ export const IMAGES = {
     src: "",
     alt: "Young Coder's Initiative programming workshop",
     hint: "Project cover — teaching",
+    size: "1600 × 1000 px · 16:10",
+  } satisfies ImageAsset,
+
+  // File:  /public/images/projects/blackjack-cover.png
+  // Ratio: 16:10 landscape. PNG is the right format for a UI screenshot —
+  //        it keeps text and lines crisp, where JPEG would smear them.
+  projBlackjackCover: {
+    src: "/images/projects/blackjack-cover.png",
+    alt: "Tkinter blackjack table showing the dealer and player hands mid-round",
+    hint: "Project cover — blackjack",
     size: "1600 × 1000 px · 16:10",
   } satisfies ImageAsset,
 

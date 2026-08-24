@@ -207,6 +207,51 @@ export const PROJECTS: Project[] = [
 
   /* ---------------------------------------------------------------------- */
   {
+    slug: "blackjack-python",
+    title: "Blackjack",
+    category: "Software · Python",
+    blurb:
+      "A playable blackjack game written from scratch in Python, with a Tkinter table that renders the hands live alongside the terminal it's played from.",
+    role: "Designer & developer",
+    timeframe: "July 2026",
+    context: "",
+    tech: ["Python", "Tkinter", "Object-Oriented Design"],
+    highlights: [
+      "Custom deck class draws cards with weighted probabilities and decrements the remaining count, so the odds shift as a real shoe would",
+      "Scoring tracks every possible hand total at once, which is how aces get to be worth 1 or 11 without special-casing them later",
+      "Tkinter view pumps the event queue manually instead of blocking on mainloop, so the window stays live while the terminal waits on input",
+    ],
+    cover: IMAGES.projBlackjackCover,
+    links: [
+      { label: "GitHub", href: "https://github.com/Alessandro-Gregori/Blackjack-Project" },
+    ],
+    caseStudy: [
+      {
+        heading: "The idea",
+        body: "Blackjack is a deceptively good first systems problem. The rules are simple enough to hold in your head, but the moment you try to write them down you hit a genuine modelling question: a hand containing an ace doesn't have one score, it has several, and which one matters depends on what happens next.",
+      },
+      {
+        heading: "How the cards work",
+        body: "Rather than build a list of fifty-two cards and shuffle it, the deck keeps a weight per card type and draws using those weights, decrementing the weight each time a card comes out. The effect is the same as dealing from a shoe without replacement, and it means the drawing logic is a single call rather than an index into a shuffled array.",
+      },
+      {
+        heading: "Aces, without the special cases",
+        body: "Instead of storing one score and patching it when an ace shows up, a hand carries an array of every total it could have. Drawing an ace duplicates that array, once counting the ace as 1 and once as 11. Everything downstream then becomes a filter: drop the totals over 21, and if none survive the hand is bust; otherwise the highest remaining total is the hand. Bust detection and best-score selection fall out of the same representation.",
+      },
+      {
+        heading: "Two front ends at once",
+        body: "The game is played in the terminal, but a Tkinter window mirrors it, drawing both hands, the scores, the balance and the current bet. The usual approach would be to hand control to Tk's mainloop, which would block the console prompts. Instead the view exposes a refresh that pumps Tk's event queue once, so the window redraws between inputs and both interfaces stay in sync.",
+      },
+      {
+        heading: "What I'd add next",
+        body: "The betting loop tracks a bankroll and runs until it's empty, and the dealer draws until it beats the player or busts. Splitting, doubling down, insurance and a proper dealer stand-on-17 rule aren't in there yet — and the dealer rule is the interesting one, because playing to the player's total rather than a fixed threshold is a meaningfully different game.",
+      },
+    ],
+    featured: false,
+  },
+
+  /* ---------------------------------------------------------------------- */
+  {
     slug: "personal-website",
     title: "This Website",
     category: "Web Design & Development",

@@ -74,9 +74,10 @@ export function ProjectCard({ project, index, variant, flipped = false }: Projec
             <p className="mt-4 text-[1rem] leading-[1.7] text-ink-soft">{project.blurb}</p>
 
             {/* Role / timeframe / org */}
+            {/* Any row with an empty value is skipped. */}
             <dl className="mt-6 space-y-2.5 border-t border-hairline pt-5">
-              <MetaRow label="Role" value={project.role} />
-              <MetaRow label="When" value={project.timeframe} />
+              {project.role && <MetaRow label="Role" value={project.role} />}
+              {project.timeframe && <MetaRow label="When" value={project.timeframe} />}
               {project.context && <MetaRow label="Where" value={project.context} />}
             </dl>
 
@@ -141,11 +142,13 @@ export function ProjectCard({ project, index, variant, flipped = false }: Projec
 
         <p className="mt-3 text-[0.92rem] leading-[1.65] text-ink-soft">{project.blurb}</p>
 
-        <p className="mt-4 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-ink-mute">
-          {project.role}
-          {project.context && ` · ${project.context}`}
-          {` · ${project.timeframe}`}
-        </p>
+        {/* Role · where · when. Empty fields are dropped so a half-filled
+            project never renders a dangling separator. */}
+        {[project.role, project.context, project.timeframe].some(Boolean) && (
+          <p className="mt-4 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-ink-mute">
+            {[project.role, project.context, project.timeframe].filter(Boolean).join(" · ")}
+          </p>
+        )}
 
         <TechList tech={project.tech} className="mt-5" />
 
