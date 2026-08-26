@@ -96,7 +96,11 @@ export const SITE = {
      will ever render as a dead link. Add or remove entries freely.
      ---------------------------------------------------------------------- */
   socials: [
-    { label: "LinkedIn", href: "", handle: "" },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/alessandro-gregori-042aa5410/",
+      handle: "Alessandro Gregori",
+    },
     {
       label: "GitHub",
       href: "https://github.com/Alessandro-Gregori",
