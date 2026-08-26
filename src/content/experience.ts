@@ -35,8 +35,10 @@ export const EXPERIENCE: ExperienceItem[] = [
   {
     org: "Bascom Palmer Eye Institute",
     role: "Research Intern",
-    period: "Jun 2026 — Present",
+    period: "Jun 2026 — Sep 2026",
     location: "Miami, FL",
+    /* Still flagged current: the role runs through September, so it is
+       ongoing today. Set this to false once September has passed. */
     current: true,
     summary:
       "Designing and building an optical test device that measures how extended-depth-of-focus and multifocal intraocular lenses perform when they sit off-centre in the eye.",

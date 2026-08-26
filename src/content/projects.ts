@@ -68,7 +68,7 @@ export const PROJECTS: Project[] = [
     blurb:
       "A purpose-built optical bench that measures how premium intraocular lenses degrade when they sit slightly off-centre in the eye — the misalignment surgeons can't fully avoid.",
     role: "Co-designer & builder (2-person team)",
-    timeframe: "2026 — Present",
+    timeframe: "Jun — Sep 2026",
     context: "Bascom Palmer Eye Institute",
     tech: [
       "Fusion 360",
