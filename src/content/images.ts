@@ -66,19 +66,20 @@ export const IMAGES = {
      little breathing room. These render small, so keep them simple.
      ====================================================================== */
 
-  // ===== REPLACE IMAGE HERE =====
-  // File: /public/images/logos/bascom-palmer.png · 400 x 400 px · transparent
+  // File: /public/images/logos/bascom-palmer.png
+  // Wide lockup (600 x 183, transparent). Rendered at a fixed height with
+  // automatic width, so its shape is preserved — see components/ui/Logo.tsx.
   logoBascomPalmer: {
-    src: "",
+    src: "/images/logos/bascom-palmer.png",
     alt: "Bascom Palmer Eye Institute logo",
     hint: "Logo",
-    size: "400 × 400 px",
+    size: "transparent PNG, any aspect",
   } satisfies ImageAsset,
 
-  // ===== REPLACE IMAGE HERE =====
-  // File: /public/images/logos/stanford-space-initiative.png · 400 x 400 px
+  // File:   /public/images/logos/stanford-space-initiative.png
+  // Source: ssi.stanford.edu — square PNG with transparency.
   logoSSI: {
-    src: "",
+    src: "/images/logos/stanford-space-initiative.png",
     alt: "Stanford Space Initiative logo",
     hint: "Logo",
     size: "400 × 400 px",
@@ -99,23 +100,20 @@ export const IMAGES = {
      project card look ten times more credible than a placeholder.
      ====================================================================== */
 
-  // ===== ADD YOUR PROJECT IMAGE HERE =====
-  // File:   /public/images/projects/iol-bench-cover.jpg
-  // Ratio:  16:10 landscape (e.g. 1600 x 1000 px)
-  // Use:    Photo of the optical test bench, or a render of the CAD assembly.
+  // File: /public/images/projects/iol-bench-cover.jpg · 16:10 landscape
+  // Use:  Photo of the IOL holder / optical bench hardware.
   projIolCover: {
-    src: "",
-    alt: "Optical test bench built to evaluate intraocular lens performance",
+    src: "/images/projects/iol-bench-cover.jpg",
+    alt: "Intraocular lens holder built for the optical test bench",
     hint: "Project cover — optical bench",
     size: "1600 × 1000 px · 16:10",
   } satisfies ImageAsset,
 
-  // ===== ADD YOUR PROJECT IMAGE HERE =====
-  // File: /public/images/projects/iol-bench-01.jpg · 1600 x 1000 px
-  // Use:  CAD screenshot of the model-eye fixture.
+  // File: /public/images/projects/iol-bench-01.jpg · 16:10 landscape
+  // Use:  Fusion 360 CAD view of the fixture.
   projIolDetail1: {
-    src: "",
-    alt: "CAD model of the model-eye test fixture",
+    src: "/images/projects/iol-bench-01.jpg",
+    alt: "Fusion 360 CAD model of the intraocular lens test fixture",
     hint: "Detail — CAD assembly",
     size: "1600 × 1000 px · 16:10",
   } satisfies ImageAsset,
@@ -164,12 +162,10 @@ export const IMAGES = {
     size: "1600 × 1000 px · 16:10",
   } satisfies ImageAsset,
 
-  // ===== ADD YOUR PROJECT IMAGE HERE =====
-  // File:   /public/images/projects/young-coders-cover.jpg
-  // Ratio:  16:10 landscape (e.g. 1600 x 1000 px)
-  // Use:    Teaching photo, or a slide from the curriculum you wrote.
+  // File: /public/images/projects/young-coders-cover.jpg · 16:10 landscape
+  // Use:  Teaching photo, or a slide from the curriculum you wrote.
   projYoungCodersCover: {
-    src: "",
+    src: "/images/projects/young-coders-cover.jpg",
     alt: "Young Coder's Initiative programming workshop",
     hint: "Project cover — teaching",
     size: "1600 × 1000 px · 16:10",
@@ -185,14 +181,12 @@ export const IMAGES = {
     size: "1600 × 1000 px · 16:10",
   } satisfies ImageAsset,
 
-  // ===== ADD YOUR PROJECT IMAGE HERE =====
-  // File:   /public/images/projects/portfolio-cover.jpg
-  // Ratio:  16:10 landscape (e.g. 1600 x 1000 px)
-  // Use:    A screenshot of this website once you're happy with it.
-  //         Tip: full-page screenshot, then crop to 16:10.
+  // File: /public/images/projects/portfolio-cover.jpg · 16:10 landscape
+  // Use:  A screenshot of this website. Retake it whenever the design
+  //       changes noticeably, so the card doesn't show an old version.
   projPortfolioCover: {
-    src: "",
-    alt: "Screenshot of this portfolio website",
+    src: "/images/projects/portfolio-cover.jpg",
+    alt: "The hero section of this portfolio website",
     hint: "Project cover — this website",
     size: "1600 × 1000 px · 16:10",
   } satisfies ImageAsset,

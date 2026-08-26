@@ -1,5 +1,5 @@
 import { EXPERIENCE } from "@/content/experience";
-import { ImageFrame } from "@/components/ui/ImageFrame";
+import { Logo } from "@/components/ui/Logo";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
@@ -59,16 +59,9 @@ export function Experience() {
                   {/* ===== REPLACE IMAGE HERE =====
                       Organization logo — edit the matching entry in
                       src/content/images.ts (e.g. IMAGES.logoBascomPalmer).
-                      400 x 400 px, transparent PNG or SVG. */}
-                  {item.logo && (
-                    <ImageFrame
-                      image={item.logo}
-                      ratio="1 / 1"
-                      compactPlaceholder
-                      className="mt-5 w-14 rounded-lg border border-hairline bg-white"
-                      sizes="56px"
-                    />
-                  )}
+                      Transparent PNG, trimmed close to the artwork. Any
+                      shape works; the height is fixed and width follows. */}
+                  {item.logo && <Logo image={item.logo} className="mt-5 h-7" />}
                 </div>
 
                 {/* ---------------- Node marker on the rail ---------------- */}

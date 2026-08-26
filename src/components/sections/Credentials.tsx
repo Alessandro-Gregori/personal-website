@@ -1,5 +1,5 @@
 import { EDUCATION, HONORS, LEADERSHIP, SKILL_GROUPS } from "@/content/credentials";
-import { ImageFrame } from "@/components/ui/ImageFrame";
+import { Logo } from "@/components/ui/Logo";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
@@ -88,19 +88,11 @@ export function Credentials() {
               <div className="mt-8 space-y-8">
                 {EDUCATION.map((item, i) => (
                   <Reveal key={item.school} delay={i * 0.06}>
-                    <div className="flex items-start gap-5">
+                    <div>
                       {/* ===== REPLACE IMAGE HERE =====
                           School logo — IMAGES.logoStanford in
-                          src/content/images.ts · 400 x 400 px */}
-                      {item.logo && (
-                        <ImageFrame
-                          image={item.logo}
-                          ratio="1 / 1"
-                          compactPlaceholder
-                          className="w-16 shrink-0 rounded-lg border border-hairline bg-white"
-                          sizes="64px"
-                        />
-                      )}
+                          src/content/images.ts. Transparent PNG, trimmed. */}
+                      {item.logo && <Logo image={item.logo} className="mb-4 h-8" />}
                       <div>
                         <h3 className="display text-[1.75rem] leading-tight text-ink">
                           {item.school}
