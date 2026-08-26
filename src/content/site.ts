@@ -97,7 +97,11 @@ export const SITE = {
      ---------------------------------------------------------------------- */
   socials: [
     { label: "LinkedIn", href: "", handle: "" },
-    { label: "GitHub", href: "", handle: "" },
+    {
+      label: "GitHub",
+      href: "https://github.com/Alessandro-Gregori",
+      handle: "Alessandro-Gregori",
+    },
     { label: "Instagram", href: "", handle: "" },
   ],
 

@@ -268,7 +268,7 @@ export const PROJECTS: Project[] = [
     ],
     cover: IMAGES.projPortfolioCover,
     links: [
-      { label: "Source", href: "" },
+      { label: "Source", href: "https://github.com/Alessandro-Gregori/personal-website" },
     ],
     caseStudy: [
       {
