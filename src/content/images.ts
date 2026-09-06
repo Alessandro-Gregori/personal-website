@@ -128,14 +128,11 @@ export const IMAGES = {
     size: "1600 × 1000 px · 16:10",
   } satisfies ImageAsset,
 
-  // ===== ADD YOUR PROJECT IMAGE HERE =====
-  // File:   /public/images/projects/avionics-cover.jpg
-  // Ratio:  16:10 landscape (e.g. 1600 x 1000 px)
-  // Use:    Close-up of a PCB you designed or soldered. Shoot on a dark
-  //         surface with side lighting — boards photograph beautifully.
+  // File: /public/images/projects/avionics-cover.jpg · 1200 x 750 (16:10)
+  // Converted from HEIC and cropped around the board.
   projAvionicsCover: {
-    src: "",
-    alt: "Avionics printed circuit board for a student-built satellite",
+    src: "/images/projects/avionics-cover.jpg",
+    alt: "Avionics printed circuit board for a student-built satellite on a workbench",
     hint: "Project cover — avionics PCB",
     size: "1600 × 1000 px · 16:10",
   } satisfies ImageAsset,
@@ -197,31 +194,28 @@ export const IMAGES = {
      sails look especially good. Action shots over posed shots.
      ====================================================================== */
 
-  // ===== REPLACE IMAGE HERE =====
-  // File:   /public/images/sports/sailing-hero.jpg
-  // Ratio:  3:2 landscape (e.g. 1800 x 1200 px)
-  // Use:    Your strongest sailing action photo — hiking out, planing,
-  //         spray flying. This anchors the whole Sports section.
+  // File: /public/images/sports/personal_sailing.jpg · 1170 x 634 (1.85 wide)
+  // The Sports feature frame is set to 16:9 to match this closely.
   sailingHero: {
-    src: "",
+    src: "/images/sports/personal_sailing.jpg",
     alt: "Alessandro Gregori racing an ILCA dinghy",
     hint: "Feature sailing action shot",
-    size: "1800 × 1200 px · 3:2",
+    size: "wide landscape · 16:9",
   } satisfies ImageAsset,
 
-  // ===== REPLACE IMAGE HERE =====
-  // File: /public/images/sports/sailing-01.jpg · 1000 x 1250 px · 4:5
-  // Use:  Regatta / fleet racing, or a start-line shot.
+  // File: /public/images/sports/group_sailing.jpg · 1600 x 1262 (1.27)
+  // Shown as the single photo beneath the disciplines, framed 4:3.
   sailingSecondary: {
-    src: "",
+    src: "/images/sports/group_sailing.jpg",
     alt: "Fleet racing at an ILCA regatta",
     hint: "Regatta / fleet",
-    size: "1000 × 1250 px · 4:5",
+    size: "landscape · 4:3",
   } satisfies ImageAsset,
 
   // ===== REPLACE IMAGE HERE =====
-  // File: /public/images/sports/sailing-02.jpg · 1000 x 1000 px · 1:1
-  // Use:  Detail or candid — rigging, boat park, on the water at sunrise.
+  // Currently unused. To show it, add IMAGES.sailingDetail back to
+  // SPORTS.gallery in src/content/sports.ts.
+  // Use: detail or candid — rigging, boat park, on the water at sunrise.
   sailingDetail: {
     src: "",
     alt: "Rigging before a race",
@@ -229,14 +223,13 @@ export const IMAGES = {
     size: "1000 × 1000 px · 1:1",
   } satisfies ImageAsset,
 
-  // ===== REPLACE IMAGE HERE =====
-  // File: /public/images/sports/wrestling-01.jpg · 1000 x 1250 px · 4:5
-  // Use:  Wrestling match or team photo.
+  // File: /public/images/sports/wrestling.jpg · 1169 x 1166 (square)
+  // The discipline card frame is set to 1:1 to match.
   wrestling: {
-    src: "",
+    src: "/images/sports/wrestling.jpg",
     alt: "Varsity wrestling match at Coral Gables Senior High",
     hint: "Wrestling",
-    size: "1000 × 1250 px · 4:5",
+    size: "square · 1:1",
   } satisfies ImageAsset,
 
   /* ======================================================================

@@ -100,6 +100,10 @@ export const SPORTS = {
     },
   ],
 
-  /* ---- Photo strip beneath the disciplines ------------------------------- */
-  gallery: [IMAGES.sailingSecondary, IMAGES.sailingDetail],
+  /* ---- Photo strip beneath the disciplines -------------------------------
+     One image renders full width (centred, capped); two or more render as a
+     staggered two-column grid. Add IMAGES.sailingDetail here once you have
+     that photo.
+     ---------------------------------------------------------------------- */
+  gallery: [IMAGES.sailingSecondary],
 };
