@@ -132,15 +132,20 @@ export function Sports() {
                       This discipline's image — edit the matching entry in
                       src/content/images.ts (e.g. IMAGES.wrestling)
                       1000 x 1250 px (4:5) */}
-                  {/* Square frame — the wrestling photo is 1:1, so it fits
-                      without cropping. */}
-                  <div className="md:w-2/5 md:shrink-0">
+                  {/* Stacked on mobile the frame is square (h-full has no
+                      definite parent height to resolve against, so the 1:1
+                      ratio drives it). Side by side from md up, w-full and
+                      h-full are both definite, which switches the ratio off
+                      and lets the photo fill the column at the card's own
+                      height. Without w-full the ratio would size the width
+                      from the height and overflow the text. */}
+                  <div className="overflow-hidden md:w-2/5 md:shrink-0">
                     <ImageFrame
                       image={discipline.image}
                       ratio="1 / 1"
                       onDark
                       zoomOnHover
-                      className="h-full"
+                      className="h-full w-full"
                       sizes="(max-width: 768px) 92vw, 22vw"
                     />
                   </div>

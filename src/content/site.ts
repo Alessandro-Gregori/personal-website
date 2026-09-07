@@ -65,10 +65,10 @@ export const SITE = {
     heading: "An academic first, and a racer the rest of the time.",
     /** Each string becomes its own paragraph. */
     paragraphs: [
-      "I grew up in Miami and started sailing at eight years old, which turned out to be the best engineering education I could have asked for. Racing a single-handed dinghy is a continuous exercise in reading a system you don't fully control, including wind, current, fleet, and your own body, then adjusting faster than the boat next to you.",
-      "That instinct followed me into the lab. At the Bascom Palmer Eye Institute I work on optical instrumentation for intraocular lenses: designing fixtures in CAD, building a bench around a model eye, and characterising how extended-depth-of-focus and multifocal lenses behave when they aren't perfectly centred. Before that, I analysed OCT retinal scans for a clinical perfusion study that became a peer-reviewed publication.",
-      "At Stanford I'm on the Avionics subteam of the Stanford Space Initiative, designing and soldering PCBs for a student-built satellite. Different domain, same appeal: hardware that has to work the first time, in an environment that won't forgive a sloppy assumption.",
-      "The teaching thread matters to me too. I co-founded a nonprofit that taught Python and C++ fundamentals to underprivileged kids, and I've coached everything from sailing to strength training. Explaining something clearly is the fastest way to find out whether you actually understand it.",
+      "I grew up in Miami and started sailing at seven years old, which turned out to be the best engineering education I could have asked for. Racing a single handed dinghy is a continuous exercise in reading a system you don't fully control, including wind, current, fleet, and your own body, then adjusting faster than the boat next to you.",
+      "That instinct followed me into the lab. At the Bascom Palmer Eye Institute I worked on optical instrumentation for intraocular lenses: designing fixtures in CAD, building a bench around a model eye, and testing how various extended depth of focus and multifocal lenses behave when they aren't perfectly centered. Before that, I analysed OCT retinal scans for a clinical perfusion study that became a peer reviewed publication.",
+      "At Stanford I'm on the Avionics subteam of the Stanford Space Initiative, designing and soldering PCBs for a student built satellite. Different domain, same appeal: hardware that has to work the first time, in an environment that won't forgive a sloppy assumption.",
+      "The teaching thread matters to me too. I cofounded a nonprofit that taught Python and C++ fundamentals to underprivileged kids, and I've coached everything from sailing to strength training. Explaining something clearly is the fastest way to find out whether you actually understand it.",
     ],
   },
 

@@ -41,9 +41,9 @@ export const EXPERIENCE: ExperienceItem[] = [
        ongoing today. Set this to false once September has passed. */
     current: true,
     summary:
-      "Designing and building an optical test device that measures how extended-depth-of-focus and multifocal intraocular lenses perform when they sit off-centre in the eye.",
+      "Designing and building an optical test device that measures how extended depth of focus and multifocal intraocular lenses perform when they sit off centre in the eye.",
     bullets: [
-      "Built the instrument as one half of a two-person team, taking it from CAD concept through to a working bench assembled around a model eye.",
+      "Built the instrument as one half of a team of two, taking it from CAD concept through to a working bench assembled around a model eye.",
       "Characterised halo and aberration behaviour across a range of lens decentrations — the failure mode patients actually notice after surgery.",
       "Translated the optical design requirements of the study into physical fixtures, mounts and a repeatable measurement procedure.",
     ],
@@ -57,10 +57,10 @@ export const EXPERIENCE: ExperienceItem[] = [
     location: "Stanford, CA",
     current: true,
     summary:
-      "Designing and hand-soldering printed circuit boards for a student-built satellite as part of the Avionics subteam.",
+      "Designing and hand soldering printed circuit boards for a student built satellite as part of the Avionics subteam.",
     bullets: [
       "Contribute to schematic capture and board layout for flight avionics hardware.",
-      "Assemble and solder boards to spec, then support bring-up and functional testing.",
+      "Assemble and solder boards to spec, then support functional testing.",
     ],
     tags: ["PCB Design", "Soldering", "Embedded Hardware", "Avionics"],
     logo: IMAGES.logoSSI,
@@ -72,10 +72,10 @@ export const EXPERIENCE: ExperienceItem[] = [
     location: "Miami, FL",
     current: false,
     summary:
-      "Analysed OCT retinal scans for a clinical study on retinal perfusion that went on to become a peer-reviewed publication.",
+      "Analysed OCT retinal scans for a clinical study on retinal perfusion that went on to become a peer reviewed publication.",
     bullets: [
       "Processed and interpreted optical coherence tomography imagery across the study cohort.",
-      "Contributed analysis to work that reached peer-reviewed publication.",
+      "Contributed analysis to work that reached peer reviewed publication.",
     ],
     tags: ["OCT Imaging", "Image Analysis", "Clinical Research"],
     logo: IMAGES.logoBascomPalmer,

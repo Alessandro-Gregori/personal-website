@@ -24,6 +24,11 @@ export type ImageAsset = {
   hint: string;
   /** Recommended pixel size, shown inside the placeholder box. */
   size: string;
+  /**
+   * Optional small line printed beneath the image. Use it for figure credits
+   * or any context the picture needs. Omit it and no caption renders.
+   */
+  caption?: string;
 };
 
 export const IMAGES = {
@@ -48,15 +53,14 @@ export const IMAGES = {
      ABOUT
      ====================================================================== */
 
-  // ===== REPLACE IMAGE HERE =====
-  // File:   /public/images/about-lab.jpg
-  // Ratio:  3:4 portrait (e.g. 1050 x 1400 px)
-  // Use:    You in a working environment — at the optical bench, holding a
-  //         PCB, at a workstation. Candid beats posed here.
+  // File:  /public/images/sports/rigging.jpeg
+  // Ratio: framed 3:4 portrait. The frame uses object-cover, so whatever the
+  //        source aspect is, it crops to fit — adjust  focus  on the
+  //        ImageFrame in components/sections/About.tsx if the crop is off.
   aboutPrimary: {
-    src: "",
-    alt: "Alessandro Gregori working at an optical test bench",
-    hint: "You at work / in the lab",
+    src: "/images/sports/rigging.jpeg",
+    alt: "Rigging a dinghy before racing",
+    hint: "About — rigging",
     size: "1050 × 1400 px · 3:4",
   } satisfies ImageAsset,
 
@@ -119,6 +123,9 @@ export const IMAGES = {
   } satisfies ImageAsset,
 
   // ===== ADD YOUR PROJECT IMAGE HERE =====
+  // Currently unused, so the case study shows only real photographs. To show
+  // it, add IMAGES.projIolDetail2 back to the iol-optical-test-bench
+  // gallery in src/content/projects.ts.
   // File: /public/images/projects/iol-bench-02.jpg · 1600 x 1000 px
   // Use:  Captured image data — halo / point-spread photographs.
   projIolDetail2: {
@@ -132,12 +139,15 @@ export const IMAGES = {
   // Converted from HEIC and cropped around the board.
   projAvionicsCover: {
     src: "/images/projects/avionics-cover.jpg",
-    alt: "Avionics printed circuit board for a student-built satellite on a workbench",
+    alt: "Avionics printed circuit board for a student built satellite on a workbench",
     hint: "Project cover — avionics PCB",
     size: "1600 × 1000 px · 16:10",
   } satisfies ImageAsset,
 
   // ===== ADD YOUR PROJECT IMAGE HERE =====
+  // Currently unused — the avionics project shows its cover only. To show it,
+  // add a  gallery: [IMAGES.projAvionicsDetail1]  line back to the
+  // satellite-avionics project in src/content/projects.ts.
   // File: /public/images/projects/avionics-01.jpg · 1600 x 1000 px
   // Use:  Schematic or board layout screenshot from your EDA tool.
   projAvionicsDetail1: {
@@ -147,16 +157,20 @@ export const IMAGES = {
     size: "1600 × 1000 px · 16:10",
   } satisfies ImageAsset,
 
-  // ===== ADD YOUR PROJECT IMAGE HERE =====
-  // File:   /public/images/projects/oct-cover.jpg
-  // Ratio:  16:10 landscape (e.g. 1600 x 1000 px)
-  // Use:    An OCT scan visualisation or analysis plot. Make sure anything
-  //         you publish is de-identified and cleared for public use.
+  // File:  /public/images/projects/OCT.jpg · 550 x 434 (about 5:4)
+  // Ratio: the project sets coverRatio to match, so none of the four panels
+  //        gets cropped — see the oct-retinal-perfusion entry in projects.ts.
+  // Note:  This is a published journal figure (panel labels A to D) from a
+  //        DIFFERENT study to the one described in the project — it shows the
+  //        kind of imaging analysed, not data from that work. The caption says
+  //        so and carries the citation; keep both if you swap the wording.
   projOctCover: {
-    src: "",
-    alt: "Optical coherence tomography retinal scan analysis",
+    src: "/images/projects/OCT.jpg",
+    alt: "Four panel OCT angiography figure: fundus images with the retinal vessels traced in panels A and C, and en face angiography slabs of the capillary networks in panels B and D, each with the foveal avascular zone outlined in red",
     hint: "Project cover — OCT analysis",
-    size: "1600 × 1000 px · 16:10",
+    size: "550 × 434 px · about 5:4",
+    caption:
+      "Illustrative retinal imaging, not data from this study. Panels A and C trace the retinal vessels; B and D show the capillary networks, with the foveal avascular zone outlined. Source: Assessment of Blood Flow Velocity in Retinal Vasculitis Using the Retinal Function Imager—A Pilot Study.",
   } satisfies ImageAsset,
 
   // File: /public/images/projects/young-coders-cover.jpg · 16:10 landscape
@@ -173,7 +187,7 @@ export const IMAGES = {
   //        it keeps text and lines crisp, where JPEG would smear them.
   projBlackjackCover: {
     src: "/images/projects/blackjack-cover.png",
-    alt: "Tkinter blackjack table showing the dealer and player hands mid-round",
+    alt: "Tkinter blackjack table showing the dealer and player hands mid round",
     hint: "Project cover — blackjack",
     size: "1600 × 1000 px · 16:10",
   } satisfies ImageAsset,

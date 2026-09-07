@@ -35,7 +35,7 @@ export function About() {
               <Reveal>
                 {/* ===== REPLACE IMAGE HERE =====
                     IMAGES.aboutPrimary in src/content/images.ts
-                    File: /public/images/about-lab.jpg · 1050 x 1400 px (3:4) */}
+                    File: /public/images/sports/rigging.jpeg */}
                 <ImageFrame
                   image={IMAGES.aboutPrimary}
                   ratio="3 / 4"
