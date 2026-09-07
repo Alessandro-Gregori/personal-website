@@ -38,15 +38,14 @@ export function Credentials() {
       className="section-pad relative border-t border-hairline bg-paper-alt"
     >
       <div className="shell">
-        <SectionHeading
-          index="05"
-          eyebrow="Skills & Education"
-          title="The toolkit, and where it came from."
-        />
+        <SectionHeading index="05" eyebrow="Skills" title="The toolkit." />
 
-        {/* ================= SKILLS ================= */}
+        {/* ================= SKILLS =================
+            The lg column count tracks the number of skill groups: the
+            gap-px + bg-hairline treatment turns any empty grid track into a
+            visible dead panel, so bump it if you add a group. */}
         {SKILL_GROUPS.length > 0 && (
-          <div className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-3">
             {SKILL_GROUPS.map((group, i) => (
               <Reveal key={group.title} delay={i * 0.06} className="h-full">
                 <div className="flex h-full flex-col bg-paper p-6">

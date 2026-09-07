@@ -36,6 +36,12 @@ type ImageFrameProps = {
    * icon plus label text, which wouldn't fit.
    */
   compactPlaceholder?: boolean;
+  /**
+   * Classes for the caption line, when the image has one. Use this to add the
+   * horizontal padding a given layout needs, e.g. "mt-2.5 px-6" inside a card
+   * where the image itself is full-bleed.
+   */
+  captionClassName?: string;
 };
 
 export function ImageFrame({
@@ -48,10 +54,11 @@ export function ImageFrame({
   zoomOnHover = false,
   focus = "center",
   compactPlaceholder = false,
+  captionClassName = "mt-3",
 }: ImageFrameProps) {
   const hasImage = image.src.trim().length > 0;
 
-  return (
+  const frame = (
     <div
       className={`relative overflow-hidden ${
         onDark ? "bg-white/[0.04]" : "bg-paper-sunk"
@@ -76,6 +83,22 @@ export function ImageFrame({
         <Placeholder image={image} onDark={onDark} compact={compactPlaceholder} />
       )}
     </div>
+  );
+
+  /* No caption: return the bare frame, so nothing else in the site changes. */
+  if (!image.caption) return frame;
+
+  return (
+    <figure className="m-0">
+      {frame}
+      <figcaption
+        className={`font-sans text-[0.68rem] leading-relaxed ${
+          onDark ? "text-white/45" : "text-ink-mute"
+        } ${captionClassName}`}
+      >
+        {image.caption}
+      </figcaption>
+    </figure>
   );
 }
 

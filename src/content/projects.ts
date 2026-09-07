@@ -8,13 +8,11 @@
       gallery shots).
    2. Copy one of the blocks below, paste it into the PROJECTS array, and
       edit the fields.
-   3. Put it wherever you want it to appear — the grid renders in array order.
+   3. Put it wherever you want it to appear — the grid renders in array order,
+      and the display number follows that order too.
 
-   FEATURED vs STANDARD
-     featured: true   -> large, full-width card with cover image + case study
-     featured: false  -> compact card in the grid below the featured ones
-   Two or three featured projects looks best. More than that and nothing
-   stands out.
+   Every project renders as the same card, so ordering is the only ranking.
+   Put the work you most want seen at the top of the array.
 
    OPTIONAL FIELDS
      caseStudy  Longer write-up. Omit it and the "Read case study" control
@@ -50,13 +48,19 @@ export type Project = {
   context: string;
   /** Tools and technologies. Rendered as mono pills. */
   tech: string[];
-  /** Short punchy outcomes, shown as a small list on featured cards. */
+  /** Short punchy outcomes. Currently not rendered on the compact card. */
   highlights: string[];
   cover: ImageAsset;
+  /**
+   * Optional override for the cover's aspect ratio, e.g. "2.36 / 1".
+   * Defaults to "16 / 10". Set this when a cover image is a very different
+   * shape and cropping it to 16:10 would cut something important — a wide
+   * published figure, for instance.
+   */
+  coverRatio?: string;
   gallery?: ImageAsset[];
   links?: ProjectLink[];
   caseStudy?: CaseStudySection[];
-  featured: boolean;
 };
 
 export const PROJECTS: Project[] = [
@@ -66,24 +70,18 @@ export const PROJECTS: Project[] = [
     title: "Intraocular Lens Test Bench",
     category: "Optical Instrumentation",
     blurb:
-      "A purpose-built optical bench that measures how premium intraocular lenses degrade when they sit slightly off-centre in the eye — the misalignment surgeons can't fully avoid.",
-    role: "Co-designer & builder (2-person team)",
+      "An optical bench built to measure how premium intraocular lenses degrade when they sit slightly off centre in the eye — the misalignment surgeons can't fully avoid.",
+    role: "Designer & builder (team of two)",
     timeframe: "Jun — Sep 2026",
     context: "Bascom Palmer Eye Institute",
-    tech: [
-      "Fusion 360",
-      "Optical Bench Design",
-      "Model Eye",
-      "Aberrometry",
-      "Image Capture",
-    ],
+    tech: ["Fusion 360", "Optical Bench Design"],
     highlights: [
       "Characterises EDOF and multifocal IOL performance across a range of decentrations",
-      "Quantifies halo and aberration behaviour, not just on-axis sharpness",
-      "CAD-designed fixturing built for repeatable, comparable measurements",
+      "Quantifies halo and aberration behaviour, not just sharpness on axis",
+      "Fixturing designed in CAD for repeatable, comparable measurements",
     ],
     cover: IMAGES.projIolCover,
-    gallery: [IMAGES.projIolDetail1, IMAGES.projIolDetail2],
+    gallery: [IMAGES.projIolDetail1],
     links: [
       // Add a link once there's something public to point at.
       { label: "Publication", href: "" },
@@ -91,11 +89,11 @@ export const PROJECTS: Project[] = [
     caseStudy: [
       {
         heading: "The problem",
-        body: "Extended-depth-of-focus and multifocal intraocular lenses are designed to give cataract patients usable vision at more than one distance. Manufacturer data almost always describes a perfectly centred lens. Real surgery doesn't work that way — the lens ends up marginally decentred inside the capsular bag, and that offset is a plausible source of the halos and glare some patients report afterwards. What was missing was a way to measure the effect directly and repeatably.",
+        body: "Extended depth of focus and multifocal intraocular lenses are designed to give cataract patients usable vision at more than one distance. Manufacturer data almost always describes a perfectly centred lens. Real surgery doesn't work that way — the lens ends up marginally decentred inside the capsular bag, and that offset is a plausible source of the halos and glare some patients report afterwards. What was missing was a way to measure the effect directly and repeatably.",
       },
       {
         heading: "What we built",
-        body: "Working as a two-person team, we designed an optical test bench around a model eye and translated the study's optical requirements into physical hardware. I designed the fixturing in Fusion 360 so lens position could be adjusted in controlled, known increments while everything else in the optical path stayed fixed — the whole point being that a change in the captured image has exactly one explanation.",
+        body: "Working as a team of two, we designed an optical test bench around a model eye and translated the study's optical requirements into physical hardware. I designed the fixturing in Fusion 360 so lens position could be adjusted in controlled, known increments while everything else in the optical path stayed fixed — the whole point being that a change in the captured image has exactly one explanation.",
       },
       {
         heading: "What it measures",
@@ -103,10 +101,9 @@ export const PROJECTS: Project[] = [
       },
       {
         heading: "What I took from it",
-        body: "Most of the difficulty in this project wasn't optical theory — it was mechanical discipline. An instrument is only as trustworthy as its least repeatable joint, and I spent far more time than I expected making sure the thing that moved was the only thing moving.",
+        body: "This is where I learned CAD properly, using Fusion 360 to turn a requirement into a 3D design I could actually hold. The bigger lesson came after that: a printed part is never quite the model. Tolerances drift, layers leave surfaces that aren't square, holes come out undersized, and a fixture that looked exact on screen ends up with play in it. Working out where those imperfections came from and designing around them — adding clearance, choosing orientations, iterating on the print — taught me more than the modelling itself.",
       },
     ],
-    featured: true,
   },
 
   /* ---------------------------------------------------------------------- */
@@ -115,18 +112,17 @@ export const PROJECTS: Project[] = [
     title: "Student Satellite Avionics",
     category: "Embedded Hardware",
     blurb:
-      "Designing and hand-soldering the printed circuit boards that will run a student-built satellite, on the Avionics subteam of the Stanford Space Initiative.",
+      "Designing and hand soldering the printed circuit boards that will run a student built satellite, on the Avionics subteam of the Stanford Space Initiative.",
     role: "Avionics Team Member",
     timeframe: "2025 — Present",
     context: "Stanford Space Initiative",
-    tech: ["PCB Design", "Schematic Capture", "Hand Soldering", "Bring-up & Test"],
+    tech: ["PCB Design", "Hand Soldering"],
     highlights: [
       "Contribute to schematic and layout work for flight avionics",
-      "Assemble boards by hand and support functional bring-up",
+      "Assemble boards by hand and support functional testing",
       "Hardware built to work the first time, in an unforgiving environment",
     ],
     cover: IMAGES.projAvionicsCover,
-    gallery: [IMAGES.projAvionicsDetail1],
     links: [{ label: "Stanford Space Initiative", href: "" }],
     caseStudy: [
       {
@@ -135,14 +131,9 @@ export const PROJECTS: Project[] = [
       },
       {
         heading: "My contribution",
-        body: "I work on schematic capture and board layout, then assemble and solder boards to spec and help with bring-up and functional testing. Soldering your own designs is an unusually direct feedback loop: a layout decision that looked reasonable on screen becomes very obviously wrong the moment you try to rework a pad next to it.",
-      },
-      {
-        heading: "Why it matters to me",
-        body: "Avionics has the same quality as optical instrumentation — there's no forgiving margin. You either respected the constraints or you didn't, and the hardware tells you which. That's the kind of engineering I want to keep doing.",
+        body: "I designed the PCBs, then assembled them by hand, soldering the pieces onto the boards myself.",
       },
     ],
-    featured: true,
   },
 
   /* ---------------------------------------------------------------------- */
@@ -151,28 +142,34 @@ export const PROJECTS: Project[] = [
     title: "OCT Retinal Perfusion Analysis",
     category: "Biomedical Imaging",
     blurb:
-      "Analysis of optical coherence tomography retinal scans supporting a clinical study on retinal perfusion, which reached peer-reviewed publication.",
+      "Analysis of optical coherence tomography retinal scans for a clinical study on how intensive exercise changes blood flow through the retina, which reached peer reviewed publication.",
     role: "Research Assistant",
     timeframe: "2024",
     context: "Bascom Palmer Eye Institute",
     tech: ["OCT Imaging", "Image Analysis", "Clinical Data"],
     highlights: [
       "Processed retinal scans across the study cohort",
-      "Contributed to a peer-reviewed publication",
+      "Contributed to a peer reviewed publication",
     ],
     cover: IMAGES.projOctCover,
+    /* The figure is about 5:4, so the frame matches it rather than cropping
+       the top and bottom panels away at the default 16:10. */
+    coverRatio: "550 / 434",
     links: [{ label: "Publication", href: "" }],
     caseStudy: [
       {
-        heading: "Context",
-        body: "Optical coherence tomography gives clinicians a cross-sectional view of the retina without touching the eye. This study used it to examine retinal perfusion — how well blood is actually reaching retinal tissue.",
+        heading: "The question",
+        body: "Optical coherence tomography gives clinicians a cross sectional view of the retina without ever touching the eye, and it is sensitive enough to resolve the capillary networks feeding retinal tissue. The study used that to ask whether exercise measurably improves eye health: if sustained training raises perfusion elsewhere in the body, does the same hold in the retinal microvasculature?",
+      },
+      {
+        heading: "The study",
+        body: "Participants were scanned before and after 24 weeks of intensive exercise, and the rate of blood flow through the capillaries of the retina was measured at both points. Holding the imaging protocol constant across the two timepoints is what makes the comparison mean anything — the change in perfusion has to be attributable to the training rather than to how the scan was taken.",
       },
       {
         heading: "My role",
-        body: "I analysed OCT scans in support of the study, working through the imaging data that underpinned its conclusions. The work contributed to a paper that was subsequently peer-reviewed and published.",
+        body: "I analysed the OCT scans that underpinned those measurements, working through the imaging data across the study cohort. The work contributed to a paper that was subsequently peer reviewed and published.",
       },
     ],
-    featured: false,
   },
 
   /* ---------------------------------------------------------------------- */
@@ -181,13 +178,13 @@ export const PROJECTS: Project[] = [
     title: "Young Coder's Initiative",
     category: "Nonprofit · Education",
     blurb:
-      "A nonprofit I co-founded to teach Python and C++ fundamentals to underprivileged children who wouldn't otherwise get access to programming instruction.",
-    role: "Co-Founder & Secretary",
+      "A nonprofit I cofounded to teach Python and C++ fundamentals to underprivileged children who wouldn't otherwise get access to programming instruction.",
+    role: "Cofounder & Secretary",
     timeframe: "2023 — 2025",
     context: "Miami, FL",
-    tech: ["Python", "C++", "Curriculum Design", "Teaching"],
+    tech: ["Python", "C++", "Teaching"],
     highlights: [
-      "Co-founded and helped run the organisation end to end",
+      "Cofounded and helped run the organisation end to end",
       "Taught programming fundamentals to students with no prior access",
     ],
     cover: IMAGES.projYoungCodersCover,
@@ -199,10 +196,9 @@ export const PROJECTS: Project[] = [
       },
       {
         heading: "What I did",
-        body: "As co-founder and secretary I helped build the organisation and taught the fundamentals directly. Teaching a language to someone who has never programmed forces you to strip an idea down to what's actually load-bearing — easily the fastest way I've found to test my own understanding.",
+        body: "As a cofounder and secretary I helped build the organisation and taught the fundamentals directly. Teaching a language to someone who has never programmed forces you to strip an idea down to what actually carries the weight — easily the fastest way I've found to test my own understanding.",
       },
     ],
-    featured: false,
   },
 
   /* ---------------------------------------------------------------------- */
@@ -215,10 +211,10 @@ export const PROJECTS: Project[] = [
     role: "Designer & developer",
     timeframe: "July 2026",
     context: "",
-    tech: ["Python", "Tkinter", "Object-Oriented Design"],
+    tech: ["Python"],
     highlights: [
       "Custom deck class draws cards with weighted probabilities and decrements the remaining count, so the odds shift as a real shoe would",
-      "Scoring tracks every possible hand total at once, which is how aces get to be worth 1 or 11 without special-casing them later",
+      "Scoring tracks every possible hand total at once, which is how aces get to be worth 1 or 11 without any special cases later",
       "Tkinter view pumps the event queue manually instead of blocking on mainloop, so the window stays live while the terminal waits on input",
     ],
     cover: IMAGES.projBlackjackCover,
@@ -232,22 +228,17 @@ export const PROJECTS: Project[] = [
       },
       {
         heading: "How the cards work",
-        body: "Rather than build a list of fifty-two cards and shuffle it, the deck keeps a weight per card type and draws using those weights, decrementing the weight each time a card comes out. The effect is the same as dealing from a shoe without replacement, and it means the drawing logic is a single call rather than an index into a shuffled array.",
+        body: "Rather than build a list of fifty two cards and shuffle it, the deck keeps a weight per card type and draws using those weights, decrementing the weight each time a card comes out. The effect is the same as dealing from a shoe without replacement, and it means the drawing logic is a single call rather than an index into a shuffled array.",
       },
       {
         heading: "Aces, without the special cases",
-        body: "Instead of storing one score and patching it when an ace shows up, a hand carries an array of every total it could have. Drawing an ace duplicates that array, once counting the ace as 1 and once as 11. Everything downstream then becomes a filter: drop the totals over 21, and if none survive the hand is bust; otherwise the highest remaining total is the hand. Bust detection and best-score selection fall out of the same representation.",
+        body: "Instead of storing one score and patching it when an ace shows up, a hand carries an array of every total it could have. Drawing an ace duplicates that array, once counting the ace as 1 and once as 11. Everything downstream then becomes a filter: drop the totals over 21, and if none survive the hand is bust; otherwise the highest remaining total is the hand. Bust detection and choosing the best score fall out of the same representation.",
       },
       {
         heading: "Two front ends at once",
         body: "The game is played in the terminal, but a Tkinter window mirrors it, drawing both hands, the scores, the balance and the current bet. The usual approach would be to hand control to Tk's mainloop, which would block the console prompts. Instead the view exposes a refresh that pumps Tk's event queue once, so the window redraws between inputs and both interfaces stay in sync.",
       },
-      {
-        heading: "What I'd add next",
-        body: "The betting loop tracks a bankroll and runs until it's empty, and the dealer draws until it beats the player or busts. Splitting, doubling down, insurance and a proper dealer stand-on-17 rule aren't in there yet — and the dealer rule is the interesting one, because playing to the player's total rather than a fixed threshold is a meaningfully different game.",
-      },
     ],
-    featured: false,
   },
 
   /* ---------------------------------------------------------------------- */
@@ -256,11 +247,11 @@ export const PROJECTS: Project[] = [
     title: "This Website",
     category: "Web Design & Development",
     blurb:
-      "Designed and built from scratch as a place to show engineering work properly — with a content system that makes adding a new project a five-minute job.",
+      "Designed and built from scratch as somewhere my work and experience could be read as one story rather than a list of entries.",
     role: "Designer & Developer",
     timeframe: "2026",
     context: "",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    tech: ["Next.js"],
     highlights: [
       "Custom design system: typography, colour and layout defined once, reused everywhere",
       "All content lives in typed data files, separate from the components",
@@ -273,17 +264,12 @@ export const PROJECTS: Project[] = [
     caseStudy: [
       {
         heading: "The brief I gave myself",
-        body: "I wanted something that didn't read like a template — a site with an actual visual point of view, where the work is the thing you notice. Editorial serif headlines against a technical mono for labels, a warm paper background instead of the default flat white, and a deliberately different treatment for the sailing section so it reads as its own chapter.",
+        body: "I didn't want this to be only a portfolio. A list of projects and job titles tells you what someone has done without telling you anything about them, and the things I care about — optics, hardware, teaching, racing a boat — only make sense next to each other. So the site is built to tell a whole story instead: where I grew up and how sailing taught me to read a system, how that turned into instrumentation and avionics work, and what I've tried to pass on by teaching. The projects are the evidence, not the point.",
       },
       {
         heading: "How it's built",
-        body: "Next.js and TypeScript, styled with Tailwind, with scroll-triggered motion handled by Framer Motion. Every piece of content — experience, projects, sailing, skills, image paths — lives in a typed data file under one folder. The components never contain copy, which means updating the site is editing data, not hunting through markup.",
+        body: "Next.js and TypeScript, styled with Tailwind, with motion on scroll handled by Framer Motion. Every piece of content — experience, projects, sailing, skills, image paths — lives in a typed data file under one folder. The components never contain copy, which means updating the site is editing data, not hunting through markup.",
       },
     ],
-    featured: false,
   },
 ];
-
-/* Convenience selectors used by the Projects section. */
-export const FEATURED_PROJECTS = PROJECTS.filter((p) => p.featured);
-export const STANDARD_PROJECTS = PROJECTS.filter((p) => !p.featured);

@@ -169,8 +169,7 @@ every spot in context.
 | Registry key | Save to | Size / ratio | What it should be |
 | --- | --- | --- | --- |
 | `portrait` | `public/images/portrait.jpg` | 1200 × 1500 · 4:5 | Head-and-shoulders portrait, clean background. The most important image on the site. |
-| `aboutPrimary` | `public/images/about-lab.jpg` | 1050 × 1400 · 3:4 | You working — at the bench, holding a board. Candid beats posed. |
-| `aboutDetail` | `public/images/about-detail.jpg` | 800 × 800 · 1:1 | A tight detail shot: solder joints, a lens mount, CAD on screen. |
+| `aboutPrimary` | `public/images/sports/rigging.jpeg` | framed 3:4 | Sits beside the About copy. Cropped with object-cover. |
 | `logoBascomPalmer` | `public/images/logos/bascom-palmer.png` | 400 × 400 | Transparent PNG or SVG, centred with a little padding. |
 | `logoSSI` | `public/images/logos/stanford-space-initiative.png` | 400 × 400 | Same. |
 | `logoStanford` | `public/images/logos/stanford.png` | 400 × 400 | Same. |

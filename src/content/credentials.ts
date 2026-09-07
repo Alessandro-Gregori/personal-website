@@ -26,22 +26,12 @@ export const SKILL_GROUPS: SkillGroup[] = [
   {
     title: "Design & Fabrication",
     caption: "Taking hardware from idea to something you can hold",
-    items: ["CAD — Fusion 360", "PCB design", "Soldering & assembly", "Optical bench setup"],
+    items: ["CAD — Fusion 360", "PCB design", "Soldering & assembly"],
   },
   {
     title: "Programming",
     caption: "Working proficiency, used for analysis and control",
     items: ["C++ — intermediate", "Python — intermediate", "MATLAB — intermediate"],
-  },
-  {
-    title: "Domain Areas",
-    caption: "Where I've done real work",
-    items: [
-      "Optical instrumentation",
-      "Biomedical device testing",
-      "Embedded & avionics hardware",
-      "OCT image analysis",
-    ],
   },
   {
     title: "Languages",
@@ -110,11 +100,11 @@ export type LeadershipItem = {
 
 export const LEADERSHIP: LeadershipItem[] = [
   {
-    role: "Co-Founder & Secretary",
+    role: "Cofounder & Secretary",
     org: "Young Coder's Initiative",
     period: "2023 — 2025",
     description:
-      "Co-founded a nonprofit teaching Python and C++ fundamentals to underprivileged children.",
+      "Cofounded a nonprofit teaching Python and C++ fundamentals to underprivileged children.",
   },
   {
     role: "Music Instructor",
@@ -135,6 +125,6 @@ export const LEADERSHIP: LeadershipItem[] = [
     org: "Mu Alpha Theta / National Honor Society",
     period: "2023 — 2025",
     description:
-      "Co-founded a peer tutoring program in SAT math and calculus, and managed club finances.",
+      "Cofounded a peer tutoring program in SAT math and calculus, and managed club finances.",
   },
 ];

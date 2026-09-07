@@ -78,9 +78,11 @@ export function Sports() {
                     IMAGES.sailingHero in src/content/images.ts
                     File: /public/images/sports/sailing-hero.jpg
                     1800 x 1200 px (3:2) — your best action shot */}
+                {/* 16:9 matches the feature photo's own 1.85 shape closely,
+                    so almost nothing is cropped. */}
                 <ImageFrame
                   image={feature.image}
-                  ratio="3 / 2"
+                  ratio="16 / 9"
                   onDark
                   zoomOnHover
                   className="rounded-xl border border-hairline-light"
@@ -130,13 +132,20 @@ export function Sports() {
                       This discipline's image — edit the matching entry in
                       src/content/images.ts (e.g. IMAGES.wrestling)
                       1000 x 1250 px (4:5) */}
-                  <div className="md:w-2/5 md:shrink-0">
+                  {/* Stacked on mobile the frame is square (h-full has no
+                      definite parent height to resolve against, so the 1:1
+                      ratio drives it). Side by side from md up, w-full and
+                      h-full are both definite, which switches the ratio off
+                      and lets the photo fill the column at the card's own
+                      height. Without w-full the ratio would size the width
+                      from the height and overflow the text. */}
+                  <div className="overflow-hidden md:w-2/5 md:shrink-0">
                     <ImageFrame
                       image={discipline.image}
-                      ratio="4 / 5"
+                      ratio="1 / 1"
                       onDark
                       zoomOnHover
-                      className="h-full"
+                      className="h-full w-full"
                       sizes="(max-width: 768px) 92vw, 22vw"
                     />
                   </div>
@@ -198,26 +207,39 @@ export function Sports() {
           </div>
         )}
 
-        {/* ================= PHOTO STRIP ================= */}
+        {/* ================= PHOTO STRIP =================
+            A single photo gets a centred, capped full-width frame; two or
+            more fall back to the staggered two-column grid. */}
         {SPORTS.gallery.length > 0 && (
-          <div className="mt-16 grid grid-cols-2 items-start gap-4 lg:mt-20 lg:gap-6">
-            {SPORTS.gallery.map((image, i) => (
-              /* Odd-indexed images are nudged down for a deliberate stagger. */
-              <Reveal key={i} delay={i * 0.08} className={i % 2 === 1 ? "lg:mt-14" : ""}>
-                {/* ===== REPLACE IMAGE HERE =====
-                    Sports gallery — edit SPORTS.gallery in
-                    src/content/sports.ts and the entries in
-                    src/content/images.ts */}
-                <ImageFrame
-                  image={image}
-                  ratio={i === 0 ? "4 / 5" : "1 / 1"}
-                  onDark
-                  zoomOnHover
-                  className="rounded-xl border border-hairline-light"
-                  sizes="(max-width: 768px) 46vw, 40vw"
-                />
-              </Reveal>
-            ))}
+          <div
+            className={`mt-16 items-start gap-4 lg:mt-20 lg:gap-6 ${
+              SPORTS.gallery.length === 1 ? "block" : "grid grid-cols-2"
+            }`}
+          >
+            {SPORTS.gallery.map((image, i) => {
+              const solo = SPORTS.gallery.length === 1;
+              return (
+                /* Odd-indexed images are nudged down for a deliberate stagger. */
+                <Reveal
+                  key={i}
+                  delay={i * 0.08}
+                  className={solo ? "mx-auto w-full max-w-4xl" : i % 2 === 1 ? "lg:mt-14" : ""}
+                >
+                  {/* ===== REPLACE IMAGE HERE =====
+                      Sports gallery — edit SPORTS.gallery in
+                      src/content/sports.ts and the entries in
+                      src/content/images.ts */}
+                  <ImageFrame
+                    image={image}
+                    ratio={solo ? "4 / 3" : i === 0 ? "4 / 5" : "1 / 1"}
+                    onDark
+                    zoomOnHover
+                    className="rounded-xl border border-hairline-light"
+                    sizes={solo ? "(max-width: 1024px) 92vw, 56rem" : "(max-width: 768px) 46vw, 40vw"}
+                  />
+                </Reveal>
+              );
+            })}
           </div>
         )}
       </div>

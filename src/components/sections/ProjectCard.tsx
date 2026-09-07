@@ -11,14 +11,16 @@ import { ArrowUpRight, PlusIcon } from "@/components/ui/Icons";
    --------------------------------------------------------------------------
    One component renders every project, in two layouts:
 
+     variant="compact"   Grid card. This is what the site currently uses for
+                         every project — see components/sections/Projects.tsx.
      variant="featured"  Large alternating layout — big cover image on one
-                         side, detail on the other. Used for your strongest
-                         two or three projects.
-     variant="compact"   Grid card. Used for everything else.
+                         side, detail on the other. CURRENTLY UNUSED, kept so
+                         the layout is there if you want to single a project
+                         out again. Note it is the only layout that renders a
+                         project's  highlights  list.
 
-   Which layout a project gets is decided by  featured: true / false  in
-   src/content/projects.ts. You should never need to edit this file to add
-   a project — only to change how projects look.
+   You should never need to edit this file to add a project — only to change
+   how projects look.
 
    Both layouts support an inline expandable case study, which only renders
    if the project has a  caseStudy  array.
@@ -55,7 +57,7 @@ export function ProjectCard({ project, index, variant, flipped = false }: Projec
                 Recommended: 1600 x 1000 px (16:10) */}
             <ImageFrame
               image={project.cover}
-              ratio="16 / 10"
+              ratio={project.coverRatio ?? "16 / 10"}
               zoomOnHover
               className="rounded-xl border border-hairline"
               sizes="(max-width: 1024px) 92vw, 55vw"
@@ -124,12 +126,15 @@ export function ProjectCard({ project, index, variant, flipped = false }: Projec
       {/* ===== ADD YOUR PROJECT IMAGE HERE =====
           Edit the project's  cover  entry in src/content/images.ts
           Recommended: 1600 x 1000 px (16:10) */}
+      {/* The cover is full-bleed at the card top, so a caption needs the same
+          horizontal padding as the card body below it. */}
       <ImageFrame
         image={project.cover}
-        ratio="16 / 10"
+        ratio={project.coverRatio ?? "16 / 10"}
         zoomOnHover
         className="border-b border-hairline"
         sizes="(max-width: 768px) 92vw, (max-width: 1200px) 45vw, 32vw"
+        captionClassName="mt-3 px-6"
       />
 
       <div className="flex flex-1 flex-col p-6">

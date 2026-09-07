@@ -42,12 +42,16 @@ export const SPORTS = {
   intro: {
     eyebrow: "Athletics",
     heading: "Twelve years of reading wind.",
-    lede: "I've been racing sailboats since I was eight. Competitive sailing has shaped how I think about engineering more than any class I've taken — it's a constant negotiation with a system you can measure but never quite control.",
+    lede: "I've been racing sailboats since I was seven. Competitive sailing has shaped how I think about engineering more than any class I've taken — it's a constant negotiation with a system you can measure but never quite control.",
   },
 
   /* ---- The big number strip --------------------------------------------- */
   stats: [
-    { value: "3×", label: "ILCA 4 Youth Worlds", note: "Three consecutive years" },
+    {
+      value: "4×",
+      label: "Youth World Championships",
+      note: "ILCA 4 in 2022, 2023, 2024 · ILCA 6 in 2025",
+    },
     { value: "ODP", label: "US Sailing Olympic Development Program", note: "Invited athlete" },
     { value: "12", label: "Years racing", note: "Since 2014" },
     { value: "2", label: "Varsity wrestling letters", note: "Coral Gables Senior High" },
@@ -57,12 +61,13 @@ export const SPORTS = {
   disciplines: [
     {
       sport: "Competitive Sailing",
-      org: "ILCA 4 · US Sailing",
+      org: "ILCA 4 & ILCA 6 · US Sailing",
       period: "2014 — Present",
       description:
-        "Single-handed dinghy racing, which means every decision on the water is yours alone. I've competed at three consecutive ILCA 4 Youth World Championships and was invited into the US Sailing Olympic Development Program. Racing internationally taught me to make fast decisions on incomplete information and then live with them.",
+        "Single handed dinghy racing, which means every decision on the water is yours alone. I've competed at four Youth World Championships — ILCA 4 in 2022, 2023 and 2024, then ILCA 6 in 2025 — and was invited into the US Sailing Olympic Development Program. Racing internationally taught me to make fast decisions on incomplete information and then live with them.",
       results: [
-        "Three consecutive ILCA 4 Youth World Championships",
+        "ILCA 4 Youth World Championships in 2022, 2023 and 2024",
+        "ILCA 6 Youth World Championships in 2025",
         "Invited to the US Sailing Olympic Development Program",
         "Racing continuously since 2014",
       ],
@@ -75,7 +80,7 @@ export const SPORTS = {
       period: "2021 — 2023",
       description:
         "Two seasons on varsity, competing through to district championships. Wrestling is the most honest sport I've done — the scoreboard has no interest in your excuses.",
-      results: ["Two-year varsity letterman", "Competed at district championships"],
+      results: ["Varsity letterman for two seasons", "Competed at district championships"],
       image: IMAGES.wrestling,
     },
   ] satisfies Discipline[],
@@ -96,10 +101,14 @@ export const SPORTS = {
       org: "Independent",
       period: "2022 — 2025",
       description:
-        "Designed and led strength and conditioning programs for a dozen student-athletes, with nutrition education built in.",
+        "Designed and led strength and conditioning programs for a dozen student athletes, with nutrition education built in.",
     },
   ],
 
-  /* ---- Photo strip beneath the disciplines ------------------------------- */
-  gallery: [IMAGES.sailingSecondary, IMAGES.sailingDetail],
+  /* ---- Photo strip beneath the disciplines -------------------------------
+     One image renders full width (centred, capped); two or more render as a
+     staggered two-column grid. Add IMAGES.sailingDetail here once you have
+     that photo.
+     ---------------------------------------------------------------------- */
+  gallery: [IMAGES.sailingSecondary],
 };

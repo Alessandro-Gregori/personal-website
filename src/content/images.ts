@@ -24,6 +24,11 @@ export type ImageAsset = {
   hint: string;
   /** Recommended pixel size, shown inside the placeholder box. */
   size: string;
+  /**
+   * Optional small line printed beneath the image. Use it for figure credits
+   * or any context the picture needs. Omit it and no caption renders.
+   */
+  caption?: string;
 };
 
 export const IMAGES = {
@@ -48,15 +53,14 @@ export const IMAGES = {
      ABOUT
      ====================================================================== */
 
-  // ===== REPLACE IMAGE HERE =====
-  // File:   /public/images/about-lab.jpg
-  // Ratio:  3:4 portrait (e.g. 1050 x 1400 px)
-  // Use:    You in a working environment — at the optical bench, holding a
-  //         PCB, at a workstation. Candid beats posed here.
+  // File:  /public/images/sports/rigging.jpeg
+  // Ratio: framed 3:4 portrait. The frame uses object-cover, so whatever the
+  //        source aspect is, it crops to fit — adjust  focus  on the
+  //        ImageFrame in components/sections/About.tsx if the crop is off.
   aboutPrimary: {
-    src: "",
-    alt: "Alessandro Gregori working at an optical test bench",
-    hint: "You at work / in the lab",
+    src: "/images/sports/rigging.jpeg",
+    alt: "Rigging a dinghy before racing",
+    hint: "About — rigging",
     size: "1050 × 1400 px · 3:4",
   } satisfies ImageAsset,
 
@@ -119,6 +123,9 @@ export const IMAGES = {
   } satisfies ImageAsset,
 
   // ===== ADD YOUR PROJECT IMAGE HERE =====
+  // Currently unused, so the case study shows only real photographs. To show
+  // it, add IMAGES.projIolDetail2 back to the iol-optical-test-bench
+  // gallery in src/content/projects.ts.
   // File: /public/images/projects/iol-bench-02.jpg · 1600 x 1000 px
   // Use:  Captured image data — halo / point-spread photographs.
   projIolDetail2: {
@@ -128,19 +135,19 @@ export const IMAGES = {
     size: "1600 × 1000 px · 16:10",
   } satisfies ImageAsset,
 
-  // ===== ADD YOUR PROJECT IMAGE HERE =====
-  // File:   /public/images/projects/avionics-cover.jpg
-  // Ratio:  16:10 landscape (e.g. 1600 x 1000 px)
-  // Use:    Close-up of a PCB you designed or soldered. Shoot on a dark
-  //         surface with side lighting — boards photograph beautifully.
+  // File: /public/images/projects/avionics-cover.jpg · 1200 x 750 (16:10)
+  // Converted from HEIC and cropped around the board.
   projAvionicsCover: {
-    src: "",
-    alt: "Avionics printed circuit board for a student-built satellite",
+    src: "/images/projects/avionics-cover.jpg",
+    alt: "Avionics printed circuit board for a student built satellite on a workbench",
     hint: "Project cover — avionics PCB",
     size: "1600 × 1000 px · 16:10",
   } satisfies ImageAsset,
 
   // ===== ADD YOUR PROJECT IMAGE HERE =====
+  // Currently unused — the avionics project shows its cover only. To show it,
+  // add a  gallery: [IMAGES.projAvionicsDetail1]  line back to the
+  // satellite-avionics project in src/content/projects.ts.
   // File: /public/images/projects/avionics-01.jpg · 1600 x 1000 px
   // Use:  Schematic or board layout screenshot from your EDA tool.
   projAvionicsDetail1: {
@@ -150,16 +157,20 @@ export const IMAGES = {
     size: "1600 × 1000 px · 16:10",
   } satisfies ImageAsset,
 
-  // ===== ADD YOUR PROJECT IMAGE HERE =====
-  // File:   /public/images/projects/oct-cover.jpg
-  // Ratio:  16:10 landscape (e.g. 1600 x 1000 px)
-  // Use:    An OCT scan visualisation or analysis plot. Make sure anything
-  //         you publish is de-identified and cleared for public use.
+  // File:  /public/images/projects/OCT.jpg · 550 x 434 (about 5:4)
+  // Ratio: the project sets coverRatio to match, so none of the four panels
+  //        gets cropped — see the oct-retinal-perfusion entry in projects.ts.
+  // Note:  This is a published journal figure (panel labels A to D) from a
+  //        DIFFERENT study to the one described in the project — it shows the
+  //        kind of imaging analysed, not data from that work. The caption says
+  //        so and carries the citation; keep both if you swap the wording.
   projOctCover: {
-    src: "",
-    alt: "Optical coherence tomography retinal scan analysis",
+    src: "/images/projects/OCT.jpg",
+    alt: "Four panel OCT angiography figure: fundus images with the retinal vessels traced in panels A and C, and en face angiography slabs of the capillary networks in panels B and D, each with the foveal avascular zone outlined in red",
     hint: "Project cover — OCT analysis",
-    size: "1600 × 1000 px · 16:10",
+    size: "550 × 434 px · about 5:4",
+    caption:
+      "Illustrative retinal imaging, not data from this study. Panels A and C trace the retinal vessels; B and D show the capillary networks, with the foveal avascular zone outlined. Source: Assessment of Blood Flow Velocity in Retinal Vasculitis Using the Retinal Function Imager—A Pilot Study.",
   } satisfies ImageAsset,
 
   // File: /public/images/projects/young-coders-cover.jpg · 16:10 landscape
@@ -176,7 +187,7 @@ export const IMAGES = {
   //        it keeps text and lines crisp, where JPEG would smear them.
   projBlackjackCover: {
     src: "/images/projects/blackjack-cover.png",
-    alt: "Tkinter blackjack table showing the dealer and player hands mid-round",
+    alt: "Tkinter blackjack table showing the dealer and player hands mid round",
     hint: "Project cover — blackjack",
     size: "1600 × 1000 px · 16:10",
   } satisfies ImageAsset,
@@ -197,31 +208,28 @@ export const IMAGES = {
      sails look especially good. Action shots over posed shots.
      ====================================================================== */
 
-  // ===== REPLACE IMAGE HERE =====
-  // File:   /public/images/sports/sailing-hero.jpg
-  // Ratio:  3:2 landscape (e.g. 1800 x 1200 px)
-  // Use:    Your strongest sailing action photo — hiking out, planing,
-  //         spray flying. This anchors the whole Sports section.
+  // File: /public/images/sports/personal_sailing.jpg · 1170 x 634 (1.85 wide)
+  // The Sports feature frame is set to 16:9 to match this closely.
   sailingHero: {
-    src: "",
+    src: "/images/sports/personal_sailing.jpg",
     alt: "Alessandro Gregori racing an ILCA dinghy",
     hint: "Feature sailing action shot",
-    size: "1800 × 1200 px · 3:2",
+    size: "wide landscape · 16:9",
   } satisfies ImageAsset,
 
-  // ===== REPLACE IMAGE HERE =====
-  // File: /public/images/sports/sailing-01.jpg · 1000 x 1250 px · 4:5
-  // Use:  Regatta / fleet racing, or a start-line shot.
+  // File: /public/images/sports/group_sailing.jpg · 1600 x 1262 (1.27)
+  // Shown as the single photo beneath the disciplines, framed 4:3.
   sailingSecondary: {
-    src: "",
+    src: "/images/sports/group_sailing.jpg",
     alt: "Fleet racing at an ILCA regatta",
     hint: "Regatta / fleet",
-    size: "1000 × 1250 px · 4:5",
+    size: "landscape · 4:3",
   } satisfies ImageAsset,
 
   // ===== REPLACE IMAGE HERE =====
-  // File: /public/images/sports/sailing-02.jpg · 1000 x 1000 px · 1:1
-  // Use:  Detail or candid — rigging, boat park, on the water at sunrise.
+  // Currently unused. To show it, add IMAGES.sailingDetail back to
+  // SPORTS.gallery in src/content/sports.ts.
+  // Use: detail or candid — rigging, boat park, on the water at sunrise.
   sailingDetail: {
     src: "",
     alt: "Rigging before a race",
@@ -229,14 +237,13 @@ export const IMAGES = {
     size: "1000 × 1000 px · 1:1",
   } satisfies ImageAsset,
 
-  // ===== REPLACE IMAGE HERE =====
-  // File: /public/images/sports/wrestling-01.jpg · 1000 x 1250 px · 4:5
-  // Use:  Wrestling match or team photo.
+  // File: /public/images/sports/wrestling.jpg · 1169 x 1166 (square)
+  // The discipline card frame is set to 1:1 to match.
   wrestling: {
-    src: "",
+    src: "/images/sports/wrestling.jpg",
     alt: "Varsity wrestling match at Coral Gables Senior High",
     hint: "Wrestling",
-    size: "1000 × 1250 px · 4:5",
+    size: "square · 1:1",
   } satisfies ImageAsset,
 
   /* ======================================================================
